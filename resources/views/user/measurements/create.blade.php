@@ -110,10 +110,14 @@
                 <small class="text-gray-500">Leave empty if you don't want to change the photo.</small>
             </div>
 
-            <div>
+            <div class="flex space-x-4">
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
                     {{ isset($measurement) ? 'Save Changes' : 'Add Measurement' }}
                 </button>
+                <a href="{{ route('user.measurements.index') }}"
+                    class="py-2 px-4 rounded-lg bg-blue-500 text-white hover:bg-blue-600">
+                    Return
+                </a>
             </div>
         </form>
     </div>

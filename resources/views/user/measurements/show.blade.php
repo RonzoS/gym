@@ -72,6 +72,13 @@
                 <img src="{{ asset('storage/' . $measurement->photo) }}" alt="Measurement Photo" class="max-w-xs rounded-lg shadow-md">
             </div>
         @endif
+        <div class="mt-4">
+            <a href="{{ route('user.measurements.index') }}"
+                class="py-2 px-4 rounded-lg bg-blue-500 text-white hover:bg-blue-600">
+                Return
+            </a>
+        </div>
     </div>
 </div>
+
 @endsection

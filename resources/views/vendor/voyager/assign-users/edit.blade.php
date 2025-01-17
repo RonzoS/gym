@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="mb-4">Edytuj trenera: {{ $trainer->name }}</h1>
+    <h1 class="mb-4">Edit trainer: {{ $trainer->name }}</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -10,18 +10,18 @@
 
     <div class="card mb-5">
         <div class="card-header">
-            <h3 class="custom-margin">Przypisani użytkownicy</h3>
+            <h3 class="custom-margin">Assigned users</h3>
         </div>
         <div class="card-body">
             @if($assignedUsers->isEmpty())
-                <p>Brak przypisanych użytkowników.</p>
+                <p>No assigned users.</p>
             @else
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Imię i nazwisko</th>
+                            <th>Name</th>
                             <th>Email</th>
-                            <th>Akcje</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,10 +32,10 @@
                                 <td>
                                     <form method="POST"
                                           action="{{ route('voyager.assign-users.detach', [$trainer->id, $user->id]) }}"
-                                          onsubmit="return confirm('Czy na pewno chcesz usunąć tego użytkownika?');">
+                                          onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -48,7 +48,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="custom-margin">Dodaj użytkowników</h3>
+            <h3 class="custom-margin">Add users</h3>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('voyager.assign-users.update', $trainer->id) }}">
@@ -56,7 +56,7 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label for="users">Wybierz użytkowników:</label>
+                    <label for="users">Select users:</label>
                     <select name="user_ids[]" id="users" class="form-control select2" multiple>
                         @foreach($availableUsers as $user)
                             <option value="{{ $user->id }}">
@@ -66,7 +66,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Dodaj użytkowników</button>
+                <button type="submit" class="btn btn-primary">Add users</button>
             </form>
         </div>
     </div>

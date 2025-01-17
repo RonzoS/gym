@@ -51,7 +51,7 @@ class UserWorkoutsController extends Controller
         return redirect()->route('voyager.user-workouts.edit', [
             'user' => $user->id,
             'workout' => $userWorkout->id,
-        ])->with('success', 'Workout został pomyślnie przypisany. Przekierowano na stronę edycji.');
+        ])->with('success', 'Workout has been successfully assigned. Redirected to the edit page.');
     }
 
     public function edit(User $user, UserWorkout $workout)
@@ -81,7 +81,7 @@ class UserWorkoutsController extends Controller
         ]);
 
         return redirect()->route('voyager.user-workouts.index', $user->id)
-            ->with('success', 'Workout został zaktualizowany.');
+            ->with('success', 'The workout has been updated.');
     }
 
     public function destroy(User $user, UserWorkout $workout)
@@ -89,6 +89,6 @@ class UserWorkoutsController extends Controller
         $workout->delete();
 
         return redirect()->route('voyager.user-workouts.index', $user->id)
-            ->with('success', 'Workout został pomyślnie usunięty.');
+            ->with('success', 'Workout has been successfully deleted.');
     }
 }

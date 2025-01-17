@@ -55,7 +55,7 @@ class AssignUsersController extends Controller
         User::whereIn('id', $userIds)->update(['trainer_id' => $trainer->id]);
 
         return redirect()->route('voyager.assign-users.edit', $trainer->id)
-                        ->with('success', 'Użytkownicy zostali przypisani do trenera.');
+                        ->with('success', 'Users have been assigned to a trainer.');
     }
 
     public function detach($trainerId, $userId)
@@ -68,6 +68,6 @@ class AssignUsersController extends Controller
         }
 
         return redirect()->route('voyager.assign-users.edit', $trainerId)
-                        ->with('success', 'Użytkownik został usunięty z trenera.');
+                        ->with('success', 'The user has been removed from the trainer.');
     }
 }

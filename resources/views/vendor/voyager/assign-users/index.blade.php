@@ -2,20 +2,19 @@
 
 @section('content')
 <div class="container">
-    <h1>Lista trenerów</h1>
+    <h1>Trainers list</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <!-- Lista trenerów -->
     <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Imię i nazwisko</th>
+                <th>Name</th>
                 <th>E-mail</th>
-                <th>Akcje</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +24,7 @@
                     <td>{{ $trainer->name }}</td>
                     <td>{{ $trainer->email }}</td>
                     <td>
-                        <a href="{{ route('voyager.assign-users.edit', $trainer->id) }}" class="btn btn-primary">Edytuj</a>
+                        <a href="{{ route('voyager.assign-users.edit', $trainer->id) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach

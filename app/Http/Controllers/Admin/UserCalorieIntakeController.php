@@ -50,6 +50,6 @@ class UserCalorieIntakeController extends Controller
         $calorieIntake->protein = $request->input('protein');
         $calorieIntake->save();
 
-        return back()->with('success', 'Dzienne spożycie kalorii zostało zaktualizowane.');
+        return back()->with('success', 'Daily calorie intake has been updated.');
     }
 }

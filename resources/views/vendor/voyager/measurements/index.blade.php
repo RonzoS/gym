@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1>Pomiar użytkownika: {{ $user->name }}</h1>
+    <h1>User measurement: {{ $user->name }}</h1>
 
     @if($measurements->isEmpty())
-        <p>Brak pomiarów dla tego użytkownika.</p>
+        <p>No measurements for this user.</p>
     @else
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Data pomiaru</th>
-                    <th>Akcje</th>
+                    <th>Measurement date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
         </table>
     @endif
     <div class="d-flex justify-content-between">
-        <a href="{{ route('voyager.manage-users.manage', $user->id) }}" class="btn btn-secondary">Powrót</a>
+        <a href="{{ route('voyager.manage-users.manage', $user->id) }}" class="btn btn-secondary">Return</a>
     </div>
 </div>
 @endsection

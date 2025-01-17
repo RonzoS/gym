@@ -2,27 +2,27 @@
 
 @section('content')
 <div class="container">
-    <h1>Szczegóły pomiaru</h1>
+    <h1>Measurement details</h1>
 
     <table class="table table-bordered">
         <tr>
-            <th>Waga</th>
+            <th>Weight</th>
             <td>{{ $measurement->weight }} kg</td>
         </tr>
         <tr>
-            <th>Wzrost</th>
+            <th>Height</th>
             <td>{{ $measurement->height }} cm</td>
         </tr>
         <tr>
-            <th>Masa mięśniowa</th>
+            <th>Muscle mass</th>
             <td>{{ $measurement->muscle_mass }} kg</td>
         </tr>
         <tr>
-            <th>Masa tłuszczowa</th>
+            <th>Fat mass</th>
             <td>{{ $measurement->fat_mass }} kg</td>
         </tr>
         <tr>
-            <th>Masa wody</th>
+            <th>Water mass</th>
             <td>{{ $measurement->water_mass }} kg</td>
         </tr>
         <tr>
@@ -30,69 +30,69 @@
             <td>{{ $measurement->bmi }}</td>
         </tr>
         <tr>
-            <th>Procent mięśni</th>
+            <th>Muscle percentage</th>
             <td>{{ $measurement->muscle_percentage }}%</td>
         </tr>
         <tr>
-            <th>Procent tłuszczu</th>
+            <th>Fat percentage</th>
             <td>{{ $measurement->fat_percentage }}%</td>
         </tr>
         <tr>
-            <th>Procent wody</th>
+            <th>Water percentage</th>
             <td>{{ $measurement->water_percentage }}%</td>
         </tr>
         <tr>
-            <th>Obwód szyi</th>
+            <th>Neck circumference</th>
             <td>{{ $measurement->neck_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód ramienia</th>
+            <th>Arm circumference</th>
             <td>{{ $measurement->arm_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód przedramienia</th>
+            <th>Forearm circumference</th>
             <td>{{ $measurement->forearm_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód nadgarstka</th>
+            <th>Wrist circumference</th>
             <td>{{ $measurement->wrist_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód klatki</th>
+            <th>Chest circumference</th>
             <td>{{ $measurement->chest_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód talii</th>
+            <th>Waist circumference</th>
             <td>{{ $measurement->waist_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód bioder</th>
+            <th>Hip circumference</th>
             <td>{{ $measurement->hip_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód uda</th>
+            <th>Thigh circumference</th>
             <td>{{ $measurement->thigh_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód łydki</th>
+            <th>Calf circumference</th>
             <td>{{ $measurement->calf_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Obwód kostki</th>
+            <th>Ankle circumference</th>
             <td>{{ $measurement->ankle_circumference }} cm</td>
         </tr>
         <tr>
-            <th>Zdjęcie</th>
+            <th>Photo</th>
             <td>
                 @if($measurement->photo)
-                <img src="{{ Voyager::image($measurement->photo) }}" alt="Zdjęcie pomiaru" style="max-width: 600px;">
+                    <img src="{{ Voyager::image($measurement->photo) }}" alt="Measurement photo" style="max-width: 600px;">
                 @else
-                Brak zdjęcia
+                    No photo
                 @endif
             </td>
         </tr>
     </table>
 
-    <a href="{{ url()->previous() }}" class="btn btn-secondary">Powrót</a>
+    <a href="{{ url()->previous() }}" class="btn btn-secondary">Return</a>
 </div>
 @endsection

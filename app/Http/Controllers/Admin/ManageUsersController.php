@@ -108,6 +108,6 @@ class ManageUsersController extends Controller
         $calorieIntake->save();
 
         return redirect()->route('voyager.manage-users.index', ['id' => $user->id])
-                        ->with('success', 'Dzienne spożycie kalorii zostało zaktualizowane.');
+                        ->with('success', 'Daily calorie intake has been updated.');
     }
 }

@@ -2,22 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1>Lista użytkowników</h1>
+    <h1>User list</h1>
 
     <form method="GET" action="{{ route('voyager.manage-users.index') }}">
         <div class="form-group">
-            <input type="text" name="search" class="form-control" placeholder="Szukaj użytkownika..." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Search for user..." value="{{ request('search') }}">
         </div>
-        <button type="submit" class="btn btn-primary">Szukaj</button>
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nazwa</th>
-                <th>Email</th>
-                <th>Akcje</th>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>

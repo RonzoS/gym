@@ -26,15 +26,13 @@ class UserController extends Controller
                 $isAvailable = false;
 
                 if ($trainer->work_start_time && $trainer->work_end_time) {
-                    // Sprawdzenie, czy aktualny czas mieści się w godzinach pracy
                     $isAvailable = $currentTime >= $trainer->work_start_time && $currentTime <= $trainer->work_end_time;
                 }
 
-                // Przekazanie danych trenera z zależnością od godzin pracy
                 $trainer = [
                     'name' => $trainer->name,
                     'email' => $trainer->email,
-                    'phone_number' => $isAvailable ? $trainer->phone_number : null, // Telefon tylko w godzinach pracy
+                    'phone_number' => $isAvailable ? $trainer->phone_number : null,
                 ];
             }
     }

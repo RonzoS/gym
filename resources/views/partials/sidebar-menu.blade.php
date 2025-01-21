@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('user.workouts') }}"
+            <a href="{{ route('user.workouts.index') }}"
                class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/workouts*')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
                 Workouts
             </a>

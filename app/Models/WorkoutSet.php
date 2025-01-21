@@ -9,6 +9,8 @@ class WorkoutSet extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = ['name', 'description', 'creator_id'];
 
     protected static function boot()

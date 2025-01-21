@@ -9,6 +9,8 @@ class UserMeasurement extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'user_id',
         'weight',

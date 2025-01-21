@@ -10,6 +10,8 @@ class Exercise extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'name',
         'description',
@@ -27,11 +29,16 @@ class Exercise extends Model
 
     public function tools(): BelongsToMany
     {
-        return $this->belongsToMany(Muscle::class, 'exercise_tool', 'exercise_id', 'tool_id');
+        return $this->belongsToMany(Tool::class, 'exercise_tool', 'exercise_id', 'tool_id');
     }
 
     public function workoutSets()
     {
         return $this->belongsToMany(WorkoutSet::class, 'workout_set_exercises', 'exercise_id', 'workout_set_id');
+    }
+
+    public function exerciseResults()
+    {
+        return $this->hasMany(ExerciseResult::class, 'exercise_id');
     }
 }

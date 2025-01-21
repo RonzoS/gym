@@ -9,6 +9,8 @@ class DailyCalorieIntake extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = ['user_id', 'calories', 'carbohydrates', 'fats', 'protein'];
 
     public function user()

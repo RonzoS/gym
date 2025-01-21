@@ -9,6 +9,8 @@ class UserWorkout extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = ['user_id', 'workout_set_id', 'scheduled_date', 'recommendations'];
 
     public function user()

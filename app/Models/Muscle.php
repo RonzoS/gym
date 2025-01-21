@@ -10,6 +10,8 @@ class Muscle extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = ['name'];
 
     public function exercises(): BelongsToMany

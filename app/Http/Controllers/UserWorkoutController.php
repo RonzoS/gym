@@ -29,7 +29,13 @@ class UserWorkoutController extends Controller
 
     public function edit($id)
     {
-        $workout = UserWorkout::with('workoutSet')->findOrFail($id);
+        $workout = UserWorkout::with([
+            'workoutSet.exercises.exerciseResults' => function ($query) use ($id) {
+                $query->where('user_workout_id', $id);
+            },
+            'workoutSet.exercises.muscles',
+            'workoutSet.exercises.tools',
+        ])->findOrFail($id);
 
         if (!$workout->done) {
             abort(403, 'Editing is only allowed for completed workouts.');

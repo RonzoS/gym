@@ -14,6 +14,7 @@
             <p><strong>Scheduled Date:</strong> {{ $workout->scheduled_date }}</p>
             <p><strong>Workout Name:</strong> {{ $workout->workoutSet->name }}</p>
             <p><strong>Description:</strong></br> {!! nl2br(e($workout->workoutSet->description)) !!}</p>
+            <p><strong>Recommendations:</strong> </br> {!! nl2br(e($workout->recommendations)) !!}</p>
 
             <h3 class="text-lg font-bold mt-6 mb-4">Exercises</h3>
             @foreach ($workout->workoutSet->exercises as $exercise)

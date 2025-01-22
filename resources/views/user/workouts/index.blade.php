@@ -37,12 +37,8 @@
                             </td>
                             <td class="border border-gray-300 px-4 py-2">
                                 <div class="flex space-x-2">
-                                    <a href="{{ route('workouts.show', $workout->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                                        View
-                                    </a>
-
                                     @if (!$workout->done)
-                                        <a href="{{ route('workouts.start', $workout->id) }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                        <a href="{{ route('workouts.start', $workout->id) }}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
                                             Start
                                         </a>
                                     @else
@@ -50,6 +46,10 @@
                                             Edit
                                         </a>
                                     @endif
+
+                                    <a href="{{ route('workouts.show', $workout->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                                        View
+                                    </a>
                                 </div>
                             </td>
                         </tr>

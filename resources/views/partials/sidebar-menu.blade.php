@@ -13,7 +13,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('user.results') }}"
+            <a href="{{ route('user.results.index') }}"
                class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/results*')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
                 Results
             </a>

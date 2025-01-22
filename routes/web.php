@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\UserWorkoutController;
 use App\Http\Controllers\ExerciseResultController;
+use App\Http\Controllers\ExerciseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/workouts/{id}/start', [UserWorkoutController::class, 'start'])->name('workouts.start');
     Route::put('/user/workouts/{id}/end', [UserWorkoutController::class, 'end'])->name('workouts.end');
 
+    Route::get('user/results', [ExerciseController::class, 'index'])->name('user.results.index');
+    Route::get('user/results/{id}', [ExerciseController::class, 'show'])->name('results.show');
     Route::post('/results/store', [ExerciseResultController::class, 'store'])->name('results.store');
     Route::get('/results/{id}/edit', [ExerciseResultController::class, 'edit'])->name('results.edit');
     Route::put('/results/{id}', [ExerciseResultController::class, 'update'])->name('results.update');
@@ -42,8 +45,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/account', [UserController::class, 'account'])->name('user.account');
     Route::put('/user/account', [UserController::class, 'updateAccount'])->name('user.account.update');
-
-    Route::get('/user/results', [\App\Http\Controllers\UserAccountController::class, 'results'])->name('user.results');
 
     Route::get('/user/measurements', [MeasurementController::class, 'index'])->name('user.measurements.index');
     Route::get('/user/measurements/create', [MeasurementController::class, 'create'])->name('user.measurements.create');

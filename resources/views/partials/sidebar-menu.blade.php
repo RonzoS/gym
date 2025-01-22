@@ -2,7 +2,7 @@
     <ul class="space-y-2">
         <li>
             <a href="{{ route('user.account') }}"
-               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/account')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
+               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/account*')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
                 My Account
             </a>
         </li>
@@ -14,19 +14,19 @@
         </li>
         <li>
             <a href="{{ route('user.results') }}"
-               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/results')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
+               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/results*')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
                 Results
             </a>
         </li>
         <li>
             <a href="{{ route('user.measurements.index') }}"
-               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/measurements')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
+               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/measurements*')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
                 Measurements
             </a>
         </li>
         <li>
             <a href="{{ route('user.dailycalorieintakes') }}"
-               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/dailycalorieintakes')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
+               class="block py-2 px-4 rounded-lg font-medium @if (Request::is('user/dailycalorieintakes*')) bg-blue-500 text-white @else hover:bg-gray-100 @endif">
                 Daily Calorie Intakes
             </a>
         </li>

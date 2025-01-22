@@ -65,6 +65,30 @@
                                     @endforeach
                                 </ul>
                             @endif
+
+                            <h5 class="text-md font-bold mt-4">Existing Results</h5>
+                            @if ($exercise->exerciseResults->isEmpty())
+                                <p class="text-gray-500">No results found for this exercise.</p>
+                            @else
+                                <table class="table-auto w-full text-left border-collapse border border-gray-300">
+                                    <thead>
+                                        <tr class="bg-gray-200">
+                                            <th class="px-4 py-2 border border-gray-300">Reps</th>
+                                            <th class="px-4 py-2 border border-gray-300">Weight (kg)</th>
+                                            <th class="px-4 py-2 border border-gray-300">Created At</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($exercise->exerciseResults as $result)
+                                            <tr>
+                                                <td class="px-4 py-2 border border-gray-300">{{ $result->performed_reps }}</td>
+                                                <td class="px-4 py-2 border border-gray-300">{{ $result->performed_weight }}</td>
+                                                <td class="px-4 py-2 border border-gray-300">{{ $result->created_at->format('Y-m-d H:i') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
                         </div>
                     </div>
                 @endforeach

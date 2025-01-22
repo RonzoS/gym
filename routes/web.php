@@ -33,8 +33,12 @@ Route::middleware('auth')->group(function () {
     Route::get('user/workouts/{id}/edit', [UserWorkoutController::class, 'edit'])->name('workouts.edit');
 
     Route::get('/user/workouts/{id}/start', [UserWorkoutController::class, 'start'])->name('workouts.start');
+    Route::put('/user/workouts/{id}/end', [UserWorkoutController::class, 'end'])->name('workouts.end');
 
     Route::post('/results/store', [ExerciseResultController::class, 'store'])->name('results.store');
+    Route::get('/results/{id}/edit', [ExerciseResultController::class, 'edit'])->name('results.edit');
+    Route::put('/results/{id}', [ExerciseResultController::class, 'update'])->name('results.update');
+    Route::delete('/results/{id}', [ExerciseResultController::class, 'destroy'])->name('results.destroy');
 
     Route::get('/user/account', [UserController::class, 'account'])->name('user.account');
     Route::put('/user/account', [UserController::class, 'updateAccount'])->name('user.account.update');

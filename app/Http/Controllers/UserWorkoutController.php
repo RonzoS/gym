@@ -17,8 +17,11 @@ class UserWorkoutController extends Controller
     public function show($id)
     {
         $workout = UserWorkout::with([
+            'workoutSet.exercises.exerciseResults' => function ($query) use ($id) {
+                $query->where('user_workout_id', $id);
+            },
             'workoutSet.exercises.muscles',
-            'workoutSet.exercises.tools'
+            'workoutSet.exercises.tools',
         ])->findOrFail($id);
 
         return view('user.workouts.show', compact('workout'));
@@ -38,11 +41,23 @@ class UserWorkoutController extends Controller
     public function start($id)
     {
         $workout = UserWorkout::with([
-            'workoutSet.exercises.exerciseResults',
+            'workoutSet.exercises.exerciseResults' => function ($query) use ($id) {
+                $query->where('user_workout_id', $id);
+            },
             'workoutSet.exercises.muscles',
             'workoutSet.exercises.tools',
         ])->findOrFail($id);
 
         return view('user.workouts.start', compact('workout'));
+    }
+
+    public function end($id)
+    {
+        $workout = UserWorkout::findOrFail($id);
+
+        $workout->done = 1;
+        $workout->save();
+
+        return redirect()->route('user.workouts.index')->with('success', 'Workout has been successfully ended.');
     }
 }

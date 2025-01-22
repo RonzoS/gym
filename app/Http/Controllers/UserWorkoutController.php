@@ -34,4 +34,15 @@ class UserWorkoutController extends Controller
 
         return view('user.workouts.edit', compact('workout'));
     }
+
+    public function start($id)
+    {
+        $workout = UserWorkout::with([
+            'workoutSet.exercises.exerciseResults',
+            'workoutSet.exercises.muscles',
+            'workoutSet.exercises.tools',
+        ])->findOrFail($id);
+
+        return view('user.workouts.start', compact('workout'));
+    }
 }

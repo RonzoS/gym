@@ -24,12 +24,17 @@
                     placeholder="Search by name"
                     class="border border-gray-300 rounded-lg px-4 py-2 w-1/2">
 
-                <input
-                    type="text"
+                <select
                     name="muscle"
-                    value="{{ request('muscle') }}"
-                    placeholder="Filter by muscle"
                     class="border border-gray-300 rounded-lg px-4 py-2 w-1/2">
+                    <option value="">-- Select Muscle --</option>
+                    @foreach ($muscles as $muscle)
+                        <option value="{{ $muscle->id }}"
+                                {{ request('muscle') == $muscle->id ? 'selected' : '' }}>
+                            {{ $muscle->name }}
+                        </option>
+                    @endforeach
+                </select>
 
                 <button type="submit"
                         class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
@@ -55,7 +60,7 @@
                         <td class="border border-gray-300 px-4 py-2">{{ $exercise->user_results_count }}</td>
                         <td class="border border-gray-300 px-4 py-2">
                             <a href="{{ route('results.show', $exercise->id) }}"
-                               class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                               class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded inline-block">
                                View
                             </a>
                         </td>

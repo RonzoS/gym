@@ -26,7 +26,7 @@
     <div class="card mb-4">
     <div class="card-body">
         <h5 class="card-title">Manage user workouts</h5>
-        <p><strong>Number of sets made:</strong> {{ $completedWorkouts}}</p>
+        <p><strong>Number of sets completed:</strong> {{ $completedWorkouts}}</p>
         <p><strong>Number of waiting sets:</strong> {{ $pendingWorkouts }}</p>
         <p><strong>Number of sets missed:</strong> {{ $missedWorkouts }}</p>
         <a href="{{ route('voyager.user-workouts.index', $user->id) }}" class="btn btn-primary">Workouts</a>

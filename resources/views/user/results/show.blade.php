@@ -24,9 +24,30 @@
                 <table class="table-auto w-full text-left border-collapse border border-gray-300">
                     <thead>
                         <tr class="bg-gray-200">
-                            <th class="px-4 py-2 border border-gray-300">Reps</th>
-                            <th class="px-4 py-2 border border-gray-300">Weight (kg)</th>
-                            <th class="px-4 py-2 border border-gray-300">Created At</th>
+                            <th class="px-4 py-2 border border-gray-300">
+                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'performed_reps', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
+                                    Reps
+                                    @if (request('sort') === 'performed_reps')
+                                        <span>{{ request('direction') === 'asc' ? '▲' : '▼' }}</span>
+                                    @endif
+                                </a>
+                            </th>
+                            <th class="px-4 py-2 border border-gray-300">
+                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'performed_weight', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
+                                    Weight (kg)
+                                    @if (request('sort') === 'performed_weight')
+                                        <span>{{ request('direction') === 'asc' ? '▲' : '▼' }}</span>
+                                    @endif
+                                </a>
+                            </th>
+                            <th class="px-4 py-2 border border-gray-300">
+                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'created_at', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
+                                    Created At
+                                    @if (request('sort') === 'created_at')
+                                        <span>{{ request('direction') === 'asc' ? '▲' : '▼' }}</span>
+                                    @endif
+                                </a>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +60,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <div class="mt-4">
+                    {{ $exerciseResults->links() }}
+                </div>
             @endif
 
         <a href="{{ route('user.results.index') }}"

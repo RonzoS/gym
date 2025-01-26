@@ -50,6 +50,11 @@
                                     <a href="{{ route('workouts.show', $workout->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
                                         View
                                     </a>
+
+                                    <a href="{{ route('workouts.downloadPdf', $workout->id) }}"
+                                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                                        PDF
+                                    </a>
                                 </div>
                             </td>
                         </tr>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\UserWorkout;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserWorkoutController extends Controller
 {
@@ -65,5 +67,19 @@ class UserWorkoutController extends Controller
         $workout->save();
 
         return redirect()->route('user.workouts.index')->with('success', 'Workout has been successfully ended.');
+    }
+
+    public function downloadPdf($id)
+    {
+        $workout = UserWorkout::with(['workoutSet.exercises'])
+            ->where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        // Generowanie PDF
+        $pdf = Pdf::loadView('pdf.workout', compact('workout'));
+
+        // Zwrot pliku PDF do pobrania
+        return $pdf->download('workout-' . $workout->id . '.pdf');
     }
 }

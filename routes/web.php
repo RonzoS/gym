@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/workouts/{id}/start', [UserWorkoutController::class, 'start'])->name('workouts.start');
     Route::put('/user/workouts/{id}/end', [UserWorkoutController::class, 'end'])->name('workouts.end');
 
+    Route::get('workouts/{id}/download-pdf', [UserWorkoutController::class, 'downloadPdf'])->name('workouts.downloadPdf');
+
     Route::get('user/results', [ExerciseController::class, 'index'])->name('user.results.index');
     Route::get('user/results/{id}', [ExerciseController::class, 'show'])->name('results.show');
     Route::post('/results/store', [ExerciseResultController::class, 'store'])->name('results.store');

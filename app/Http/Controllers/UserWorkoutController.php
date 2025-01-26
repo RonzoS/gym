@@ -76,10 +76,8 @@ class UserWorkoutController extends Controller
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
-        // Generowanie PDF
         $pdf = Pdf::loadView('pdf.workout', compact('workout'));
 
-        // Zwrot pliku PDF do pobrania
         return $pdf->download('workout-' . $workout->id . '.pdf');
     }
 }

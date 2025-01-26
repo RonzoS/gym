@@ -13,6 +13,7 @@ use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\UserWorkoutController;
 use App\Http\Controllers\ExerciseResultController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\SubscriptionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/measurements/{id}', [MeasurementController::class, 'destroy'])->name('measurements.destroy');
 
     Route::get('/user/dailycalorieintakes', [\App\Http\Controllers\DailyCalorieIntakeController::class, 'index'])->name('user.dailycalorieintakes');
+
+    Route::post('/subscription/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscription.subscribe');
+    Route::post('/subscription/cancel', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');
 });
 
 Route::group(['prefix' => 'admin'], function () {

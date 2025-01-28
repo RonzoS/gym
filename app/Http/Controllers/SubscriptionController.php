@@ -14,7 +14,7 @@ class SubscriptionController extends Controller
         $user->newSubscription('default', 'price_1QlYbW03SANrjQmS59icFnyD')
             ->create($paymentMethod);
 
-        return redirect()->route('home')->with('success', 'Subskrypcja aktywowana!');
+        return redirect()->route('user.account')->with('success', 'Subskrypcja aktywowana!');
     }
 
     public function cancel(Request $request)
@@ -22,6 +22,6 @@ class SubscriptionController extends Controller
         $user = $request->user();
         $user->subscription('default')->cancel();
 
-        return redirect()->route('home')->with('success', 'Subskrypcja została anulowana.');
+        return redirect()->route('user.account')->with('success', 'Subskrypcja została anulowana.');
     }
 }

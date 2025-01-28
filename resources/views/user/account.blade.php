@@ -61,6 +61,7 @@
         @else
             <div class="mb-6 p-4 bg-yellow-100 rounded-lg">
                 <p>You do not have an active subscription.</p>
+                <p>Subscription cost 200 PLN per month</p>
                 <form id="subscription-form" action="{{ route('subscription.subscribe') }}" method="POST" class="flex flex-col space-y-4">
                     @csrf
                     <input type="hidden" name="plan" value="default">

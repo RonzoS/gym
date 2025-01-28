@@ -14,7 +14,6 @@
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>E-mail</th>
                 <th>Actions</th>
@@ -23,7 +22,6 @@
         <tbody>
             @foreach($users as $user)
             <tr>
-                <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
@@ -33,5 +31,9 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ $users->links() }}
+    </div>
 </div>
 @endsection

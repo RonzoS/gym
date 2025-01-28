@@ -35,11 +35,12 @@ class ManageUsersController extends Controller
             });
         }
 
-        $users = $query->where('role_id', 2)->get();
+        $query->whereHas('subscriptions', function ($q) {
+            $q->where('stripe_status', 'active')
+              ->where('name', 'default');
+        });
 
-        $currentUser = auth()->user();
-
-        $users->prepend(auth()->user());
+        $users = $query->where('role_id', 2)->paginate(10);
 
         return view('vendor.voyager.manage-users.index', compact('users'));
     }

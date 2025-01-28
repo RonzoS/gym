@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\ManageUsersController;
 use App\Http\Controllers\Admin\UserMeasurementsController;
 use App\Http\Controllers\Admin\UserCalorieIntakeController;
 use App\Http\Controllers\Admin\UserWorkoutsController;
-use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\Admin\UserResultsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MeasurementController;
@@ -94,4 +94,9 @@ Route::group(['prefix' => 'admin'], function () {
         ->name('voyager.user-workouts.update');
     Route::delete('manage-users/{user}/workouts/{workout}', [UserWorkoutsController::class, 'destroy'])
         ->name('voyager.user-workouts.destroy');
+
+    Route::get('manage-users/{user}/results', [UserResultsController::class, 'index'])
+        ->name('voyager.user-results.index');
+    Route::get('manage-users/{user}/results/{exercise}', [UserResultsController::class, 'show'])
+        ->name('voyager.user-results.show');
 })->middleware('auth');

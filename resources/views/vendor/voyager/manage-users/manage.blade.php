@@ -24,14 +24,21 @@
     </div>
 
     <div class="card mb-4">
-    <div class="card-body">
-        <h5 class="card-title">Manage user workouts</h5>
-        <p><strong>Number of sets completed:</strong> {{ $completedWorkouts}}</p>
-        <p><strong>Number of waiting sets:</strong> {{ $pendingWorkouts }}</p>
-        <p><strong>Number of sets missed:</strong> {{ $missedWorkouts }}</p>
-        <a href="{{ route('voyager.user-workouts.index', $user->id) }}" class="btn btn-primary">Workouts</a>
+        <div class="card-body">
+            <h5 class="card-title">Manage user workouts</h5>
+            <p><strong>Number of sets completed:</strong> {{ $completedWorkouts}}</p>
+            <p><strong>Number of waiting sets:</strong> {{ $pendingWorkouts }}</p>
+            <p><strong>Number of sets missed:</strong> {{ $missedWorkouts }}</p>
+            <a href="{{ route('voyager.user-workouts.index', $user->id) }}" class="btn btn-primary">Workouts</a>
+        </div>
     </div>
-</div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">User results</h5>
+            <a href="{{ route('voyager.user-results.index', $user->id) }}" class="btn btn-primary">Results</a>
+        </div>
+    </div>
 
     @if($latestMeasurement)
     <div class="card mb-4">

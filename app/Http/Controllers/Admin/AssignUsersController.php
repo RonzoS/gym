@@ -29,7 +29,7 @@ class AssignUsersController extends Controller
         return view('vendor.voyager.assign-users.index', compact('trainers'));
     }
 
-    public function edit($trainerId)
+    public function edit(Request $request, $trainerId)
     {
         if (auth()->user()->role_id == 3 && auth()->id() != $trainerId) {
             abort(403, 'Access denied');
@@ -37,14 +37,25 @@ class AssignUsersController extends Controller
 
         $trainer = User::findOrFail($trainerId);
 
-        $assignedUsers = User::where('trainer_id', $trainer->id)->get();
+        $search = $request->input('search');
+
+        $assignedUsersQuery = User::where('trainer_id', $trainer->id);
+
+        if ($search) {
+            $assignedUsersQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                      ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        }
+
+        $assignedUsers = $assignedUsersQuery->paginate(10);
 
         $availableUsers = User::where(function ($query) use ($trainer) {
             $query->whereNull('trainer_id')
                   ->orWhere('trainer_id', '<>', $trainer->id);
         })->where('role_id', 2)->get();
 
-        return view('vendor.voyager.assign-users.edit', compact('trainer', 'assignedUsers', 'availableUsers'));
+        return view('vendor.voyager.assign-users.edit', compact('trainer', 'assignedUsers', 'availableUsers', 'search'));
     }
 
     public function update(Request $request, $trainerId)

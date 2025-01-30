@@ -24,7 +24,7 @@ class UserMeasurementsController extends Controller
 
         $measurements = UserMeasurement::where('user_id', $userId)
                                         ->orderBy('created_at', 'desc')
-                                        ->get();
+                                        ->paginate(10);
 
         return view('vendor.voyager.measurements.index', compact('user', 'measurements'));
     }

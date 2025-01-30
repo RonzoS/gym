@@ -24,7 +24,7 @@ class ManageUsersController extends Controller
     {
         $query = User::query();
 
-        if (auth()->user()->role->name === 'trainer') {
+        if (auth()->user()->role->id === 3) {
             $query->where('trainer_id', auth()->id());
         }
 
@@ -40,7 +40,8 @@ class ManageUsersController extends Controller
               ->where('name', 'default');
         });
 
-        $users = $query->where('role_id', 2)->paginate(10);
+        $users = $query->where('role_id', 2)
+               ->paginate(10);
 
         return view('vendor.voyager.manage-users.index', compact('users'));
     }

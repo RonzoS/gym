@@ -16,6 +16,12 @@
             @if($assignedUsers->isEmpty())
                 <p>No assigned users.</p>
             @else
+                <form method="GET" action="{{ route('voyager.assign-users.edit', $trainer->id) }}">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search assigned users..." value="{{ request('search') }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -42,6 +48,42 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <nav aria-label="Pagination">
+                        <ul class="pagination">
+                            @if ($assignedUsers->onFirstPage())
+                                <li class="page-item disabled">
+                                    <span class="page-link">Previous</span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $assignedUsers->previousPageUrl() }}" aria-label="Previous">
+                                        Previous
+                                    </a>
+                                </li>
+                            @endif
+
+                            @foreach ($assignedUsers->getUrlRange(1, $assignedUsers->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $assignedUsers->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            @if ($assignedUsers->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $assignedUsers->nextPageUrl() }}" aria-label="Next">
+                                        Next
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link">Next</span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                </div>
             @endif
         </div>
     </div>

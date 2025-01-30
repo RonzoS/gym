@@ -155,5 +155,21 @@
         </dialog>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    if (localStorage.getItem("scrollPosition")) {
+        window.scrollTo(0, localStorage.getItem("scrollPosition"));
+        localStorage.removeItem("scrollPosition");
+    }
+
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", function () {
+            localStorage.setItem("scrollPosition", window.scrollY);
+        });
+    });
+});
+</script>
+
 @endsection
 

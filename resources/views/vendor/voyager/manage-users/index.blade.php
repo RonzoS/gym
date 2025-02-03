@@ -17,6 +17,7 @@
                 <tr>
                     <th>Name</th>
                     <th>E-mail</th>
+                    <th>Incoming workouts</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{$user->user_workouts_count}}</td>
                         <td>
                             <a href="{{ route('voyager.manage-users.manage', $user->id) }}"
                                 class="btn btn-primary">Manage</a>

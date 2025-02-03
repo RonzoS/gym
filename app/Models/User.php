@@ -68,4 +68,9 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasOne(DailyCalorieIntake::class);
     }
 
+    public function userWorkouts()
+    {
+        return $this->hasMany(UserWorkout::class, 'user_id');
+    }
+
 }

@@ -31,17 +31,23 @@ class ManageUsersController extends Controller
         if ($request->has('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')
-                  ->orWhere('email', 'like', '%' . $request->search . '%');
+                    ->orWhere('email', 'like', '%' . $request->search . '%');
             });
         }
 
         $query->whereHas('subscriptions', function ($q) {
             $q->where('stripe_status', 'active')
-              ->where('name', 'default');
+                ->where('name', 'default');
         });
 
+        $today = Carbon::today();
+
         $users = $query->where('role_id', 2)
-               ->paginate(10);
+            ->withCount(['userWorkouts' => function ($q) use ($today) {
+                $q->where('scheduled_date', '>', $today);
+            }])
+            ->orderBy('user_workouts_count')
+            ->paginate(10);
 
         return view('vendor.voyager.manage-users.index', compact('users'));
     }
@@ -80,7 +86,8 @@ class ManageUsersController extends Controller
             'calorieIntake',
             'completedWorkouts',
             'pendingWorkouts',
-            'missedWorkouts'));
+            'missedWorkouts'
+        ));
     }
 
     public function editCalorieIntake($userId)
@@ -110,6 +117,6 @@ class ManageUsersController extends Controller
         $calorieIntake->save();
 
         return redirect()->route('voyager.manage-users.index', ['id' => $user->id])
-                        ->with('success', 'Daily calorie intake has been updated.');
+            ->with('success', 'Daily calorie intake has been updated.');
     }
 }

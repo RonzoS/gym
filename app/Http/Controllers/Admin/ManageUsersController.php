@@ -24,6 +24,8 @@ class ManageUsersController extends Controller
     {
         $query = User::query();
 
+        $today = Carbon::today();
+
         if (auth()->user()->role->id === 3) {
             $query->where('trainer_id', auth()->id());
         }
@@ -35,16 +37,18 @@ class ManageUsersController extends Controller
             });
         }
 
-        $query->whereHas('subscriptions', function ($q) {
-            $q->where('stripe_status', 'active')
-                ->where('name', 'default');
+        $query->whereHas('subscriptions', function ($q) use ($today) {
+            $q->where('name', 'default')
+              ->where('stripe_status', 'active')
+              ->where(function ($query) use ($today) {
+                  $query->whereNull('ends_at')
+                        ->orWhereDate('ends_at', '>=', $today);
+              });
         });
-
-        $today = Carbon::today();
 
         $users = $query->where('role_id', 2)
             ->withCount(['userWorkouts' => function ($q) use ($today) {
-                $q->where('scheduled_date', '>', $today);
+                $q->where('scheduled_date', '>=', $today);
             }])
             ->orderBy('user_workouts_count')
             ->paginate(10);
@@ -71,7 +75,7 @@ class ManageUsersController extends Controller
             ->count();
 
         $pendingWorkouts = UserWorkout::where('user_id', $user->id)
-            ->where('scheduled_date', '>', $today)
+            ->where('scheduled_date', '>=', $today)
             ->count();
 
         $missedWorkouts = UserWorkout::where('user_id', $user->id)
